@@ -1,7 +1,7 @@
 # labTalkNet
 
 Информация о проекте
-Данный проект основан на работе NVIDIA https://github.com/NVIDIA/NeMo https://arxiv.org/abs/2005.05514  «TalkNet: Fully-Convolutional Non-Autoregressive Speech Synthesis Model» за  авторством Stanislav Beliaev, Yurii Rebryk, Boris Ginsburg. 
+Данный проект основан на работе [NVIDIA](https://github.com/NVIDIA/NeMo) https://arxiv.org/abs/2005.05514  «TalkNet: Fully-Convolutional Non-Autoregressive Speech Synthesis Model» за  авторством Stanislav Beliaev, Yurii Rebryk, Boris Ginsburg. 
 TalkNet это свёрточная неавторегрессионная нейронная модель для синтеза речи. Модель состоит из двух сверточных сетей с прямой связью. 
 
 
@@ -18,3 +18,5 @@ TalkNet это свёрточная неавторегрессионная не�
 # todo
 
 idk smh
+
+ ![шо куда](/images/img4.png)
