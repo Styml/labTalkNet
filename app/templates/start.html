@@ -143,12 +143,15 @@
             <input type="submit" value="submit" class="u-form-control-hidden">
           </div>
           <div class="u-form-send-message u-form-send-success"> Ваш запрос выполняется. </div>
-          <div class="u-form-send-error u-form-send-message"> Отправка не удалась. Пожалуйста, исправьте ошибки и
-            попробуйте еще раз. </div>
+          <!--<div class="u-form-send-error u-form-send-message"> Отправка не удалась. Пожалуйста, исправьте ошибки и
+            попробуйте еще раз. </div>-->
           <input type="hidden" value="" name="recaptchaResponse">
         </form>
       </div>
       AUDIO: <audio src="{{ url_for("static", filename = "output.wav") }}" controls></audio>
+      {% if path_to_file %}
+        <audio src="{{ url_for("static", filename = "sample.wav") }}" controls></audio>
+      {% endif %}
     </div>
   </section>
 

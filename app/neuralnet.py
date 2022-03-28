@@ -81,33 +81,26 @@ class vHiFiGAN:
         sr_mix = wave_out + y_padded
         return sr_mix, self.h.sampling_rate
 
-import logging
-logging.getLogger('nemo_logger').setLevel(logging.ERROR)
-print('sex0')
-#import nemo.collections.tts.models as TN
-print('sex1')
-from nemo.collections.tts.models import TalkNetSpectModel
-print('sex2')
-from nemo.collections.tts.models import TalkNetDursModel
-print('sex3')
-from nemo.collections.tts.models import TalkNetPitchModel
+def init():
+    from nemo.collections.tts.models import TalkNetSpectModel, TalkNetDursModel, TalkNetPitchModel
+    spec_gen = TalkNetSpectModel.restore_from('TalkNetSpect.nemo')
+    print('1')
+    spec_gen.add_module('_pitch_model', TalkNetPitchModel.restore_from('TalkNetPitch.nemo'))
+    print('2')
+    spec_gen.add_module('_durs_model', TalkNetDursModel.restore_from('TalkNetDurs.nemo'))
+    print(3)
+    vocoder = vHiFiGAN('hifiganmodel', "config_v1", "cuda:0")
+    print('MODEL IS LOADED')
+    return spec_gen, vocoder
 
-spec_gen = TalkNetSpectModel.restore_from('TalkNetSpect.nemo')
-print('1')
-spec_gen.add_module('_pitch_model', TalkNetPitchModel.restore_from('TalkNetPitch.nemo'))
-print('2')
-spec_gen.add_module('_durs_model', TalkNetDursModel.restore_from('TalkNetDurs.nemo'))
-print(3)
-vocoder = vHiFiGAN('hifiganmodel', "config_v1", "cuda:0")
-
-def infer(str_input):
+def infer(spec_gen, vocoder, str_input):
     with torch.no_grad():
         parsed = spec_gen.parse(str_input)
         gen_spec_kwargs = {}
            
         spectrogram = spec_gen.generate_spectrogram(tokens=parsed, **gen_spec_kwargs)
         #audio = vocoder.convert_spectrogram_to_audio(spec=spectrogram)
-        audio, audio_torch = vocoder.vocode(spectrogram)
+        audio, _ = vocoder.vocode(spectrogram)
 #        audio = vocoder._bias_denoise(audio, spectrogram).squeeze(1)
     if spectrogram is not None:
         if isinstance(spectrogram, torch.Tensor):
@@ -118,17 +111,4 @@ def infer(str_input):
         audio = audio.to('cpu').numpy()
     return spectrogram, audio
 
-'''print("sex2")
-text_to_generate = input("Input text to synthesize: ")
-spec, audio = infer(text_to_generate)
-
-from scipy.io.wavfile import write
-
-audio_path = 'app/static/output.wav'
-write(audio_path, 22050, audio)
-print(audio_path)
-
-#import IPython.display as ipd
-#ipd.Audio(audio, rate=22050, autoplay=True)
-
-'''
+spec, voc = init()
