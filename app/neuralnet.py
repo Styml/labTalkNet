@@ -12,7 +12,6 @@ from env import AttrDict
 from meldataset import MAX_WAV_VALUE, mel_spectrogram
 from models import Generator
 
-
 class vHiFiGAN:
     def __init__(self, model_path, conf_name, device):
         # Load HiFi-GAN
@@ -82,14 +81,21 @@ class vHiFiGAN:
         sr_mix = wave_out + y_padded
         return sr_mix, self.h.sampling_rate
 
+import logging
+logging.getLogger('nemo_logger').setLevel(logging.ERROR)
+print('sex0')
+#import nemo.collections.tts.models as TN
 print('sex1')
-from nemo.collections.tts.models import TalkNetSpectModel, TalkNetDursModel, TalkNetPitchModel
+from nemo.collections.tts.models import TalkNetSpectModel
+print('sex2')
+from nemo.collections.tts.models import TalkNetDursModel
+print('sex3')
+from nemo.collections.tts.models import TalkNetPitchModel
 
 spec_gen = TalkNetSpectModel.restore_from('TalkNetSpect.nemo')
 print('1')
 spec_gen.add_module('_pitch_model', TalkNetPitchModel.restore_from('TalkNetPitch.nemo'))
 print('2')
-
 spec_gen.add_module('_durs_model', TalkNetDursModel.restore_from('TalkNetDurs.nemo'))
 print(3)
 vocoder = vHiFiGAN('hifiganmodel', "config_v1", "cuda:0")
@@ -112,7 +118,7 @@ def infer(str_input):
         audio = audio.to('cpu').numpy()
     return spectrogram, audio
 
-print("sex2")
+'''print("sex2")
 text_to_generate = input("Input text to synthesize: ")
 spec, audio = infer(text_to_generate)
 
@@ -125,3 +131,4 @@ print(audio_path)
 #import IPython.display as ipd
 #ipd.Audio(audio, rate=22050, autoplay=True)
 
+'''

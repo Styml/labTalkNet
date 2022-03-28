@@ -33,7 +33,7 @@
   <header class="u-clearfix u-header" id="sec-e9dc" data-animation-name="" data-animation-duration="0"
     data-animation-delay="0" data-animation-direction="">
     <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-      <a href="https://nicepage.com" class="u-image u-logo u-image-1" title="gfhfg" data-image-width="500"
+      <a  href="{{ url_for('main') }}" class="u-image u-logo u-image-1" title="gfhfg" data-image-width="500"
         data-image-height="74">
         <img src="{{ url_for('static', filename='images/TalkNet-Bot2.png')}}" class="u-logo-image u-logo-image-1">
       </a>
@@ -58,11 +58,11 @@
           <ul class="u-custom-font u-nav u-spacing-20 u-text-font u-unstyled u-nav-1">
             <li class="u-nav-item"><a
                 class="u-border-active-palette-1-base u-border-hover-palette-1-base u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base"
-                href="main.html" style="padding: 10px;">Главная</a>
+                href="{{ url_for('main') }}" style="padding: 10px;">Главная</a>
             </li>
             <li class="u-nav-item"><a
                 class="u-border-active-palette-1-base u-border-hover-palette-1-base u-button-style u-nav-link u-text-active-palette-2-base u-text-grey-90 u-text-hover-palette-2-base"
-                href="about.html" style="padding: 10px;">О нас</a>
+                href="{{ url_for('about') }}" style="padding: 10px;">О нас</a>
             </li>
           </ul>
         </div>
@@ -71,10 +71,10 @@
             <div class="u-inner-container-layout u-sidenav-overflow">
               <div class="u-menu-close"></div>
               <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="main.html"
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('main') }}"
                     style="padding: 10px 20px;">Главная</a>
                 </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="about.html"
+                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="{{ url_for('about') }}"
                     style="padding: 10px 20px;">О нас</a>
                 </li>
               </ul>
@@ -131,7 +131,7 @@
           </div>
         </div>-->
       <div class="u-expanded-width u-form u-form-1">
-        <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom"
+        <form action="/wavfile" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom"
           name="form" style="padding: 10px;">
           <div class="u-form-group u-form-message">
             <label for="message-90ff" class="u-label">Введите текст</label>
@@ -142,13 +142,13 @@
             <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-palette-2-base u-btn-7">Послушать</a>
             <input type="submit" value="submit" class="u-form-control-hidden">
           </div>
-          AUDIO: <audio src="{{ url_for("static", filename = "/wavs/output.wav") }}" controls></audio>
           <div class="u-form-send-message u-form-send-success"> Ваш запрос выполняется. </div>
           <div class="u-form-send-error u-form-send-message"> Отправка не удалась. Пожалуйста, исправьте ошибки и
             попробуйте еще раз. </div>
           <input type="hidden" value="" name="recaptchaResponse">
         </form>
       </div>
+      AUDIO: <audio src="{{ url_for("static", filename = "output.wav") }}" controls></audio>
     </div>
   </section>
 
