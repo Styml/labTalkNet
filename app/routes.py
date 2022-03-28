@@ -2,7 +2,7 @@ from flask import render_template
 from app import app
 
 @app.route('/')
-@app.route('/start')
+@app.route('/start', methods=['GET', 'POST'])
 def start():
     return render_template('start.html', name=None)
    # return "Hello world!"
