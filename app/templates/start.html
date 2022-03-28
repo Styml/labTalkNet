@@ -142,14 +142,13 @@
             <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-palette-2-base u-btn-7">Послушать</a>
             <input type="submit" value="submit" class="u-form-control-hidden">
           </div>
-          <div class="u-form-send-message u-form-send-success"> Спасибо! Ваше сообщение отправлено. </div>
+          AUDIO: <audio src="{{ url_for("static", filename = "/wavs/output.wav") }}" controls></audio>
+          <div class="u-form-send-message u-form-send-success"> Ваш запрос выполняется. </div>
           <div class="u-form-send-error u-form-send-message"> Отправка не удалась. Пожалуйста, исправьте ошибки и
             попробуйте еще раз. </div>
           <input type="hidden" value="" name="recaptchaResponse">
         </form>
       </div>
-      <a href="https://nicepage.com/ru/c/galereya-html-shablony"
-        class="u-border-none u-btn u-btn-round u-button-style u-palette-2-base u-radius-1 u-btn-8">Скачать</a>  
     </div>
   </section>
 

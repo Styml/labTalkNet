@@ -1,5 +1,6 @@
 from flask import render_template
 from app import app
+from flask import send_file
 
 @app.route('/')
 @app.route('/start', methods=['GET', 'POST'])
@@ -15,8 +16,11 @@ def about():
 def main():
     return render_template('main.html', name=None)
 
-@app.route("/post", methods=["POST"])
-def upvote():
-    global votes
-    votes = votes + 1
-    return str(votes)
+@app.route('/wavfile')
+def view_file():
+     path_to_file = "output.wav"
+     return send_file(
+         path_to_file, 
+         mimetype="audio/wav", 
+         #as_attachment=True, 
+         attachment_filename="output.wav")
