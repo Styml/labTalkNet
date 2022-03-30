@@ -88,48 +88,28 @@
   <section class="u-clearfix u-section-1" id="sec-1c98">
     <div class="u-clearfix u-sheet u-sheet-1">
       <div class="u-image u-image-circle u-image-1" alt="" data-image-width="1812" data-image-height="1000"></div>
-      <!--<p class="u-align-left u-text u-text-default u-text-1">Нажмите, чтобы прослушать голос.</p>
+      <p class="u-align-left u-text u-text-default u-text-1">Нажмите, чтобы прослушать образцы.</p>
       <figure>
-        <figcaption>Голос 1</figcaption>
-        <audio controls src="/media/cc0-audio/t-rex-roar.mp3">
+        <figcaption>"I think my voice can be recognized, if you listen hard enough."</figcaption>
+        <audio controls src="{{ url_for('static', filename='sample1.wav')}}">
           Your browser does not support the
           <code>audio</code> element.
         </audio>
       </figure>
       <figure>
-        <figcaption>Голос 2</figcaption>
-        <audio controls src="/media/cc0-audio/t-rex-roar.mp3">
+        <figcaption>"Sometimes I think my efforts are in vain."</figcaption>
+        <audio controls src="{{ url_for('static', filename='sample2.wav')}}">
           Your browser does not support the
           <code>audio</code> element.
         </audio>
       </figure>
-      <figure>
+      <!--<figure>
         <figcaption>Голос 3</figcaption>
         <audio controls src="/media/cc0-audio/t-rex-roar.mp3">
           Your browser does not support the
           <code>audio</code> element.
         </audio>
       </figure>-->
-      <!--<p class="u-text u-text-default u-text-2">Выберите понравившийся голос.</p>
-        <div class="u-list u-list-2">
-          <div class="u-repeater u-repeater-2">
-            <div class="u-container-style u-list-item u-repeater-item">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-4">
-                <a href="https://nicepage.com/c/text-website-templates" class="u-border-none u-btn u-button-style u-palette-2-base u-btn-4">Голос 1</a>
-              </div>
-            </div>
-            <div class="u-container-style u-list-item u-repeater-item">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-5">
-                <a href="https://nicepage.com/c/technology-website-templates" class="u-border-none u-btn u-button-style u-palette-2-base u-btn-5">Голос 2</a>
-              </div>
-            </div>
-            <div class="u-container-style u-list-item u-repeater-item">
-              <div class="u-container-layout u-similar-container u-valign-top u-container-layout-6">
-                <a href="https://nicepage.com/c/education-website-templates" class="u-border-none u-btn u-button-style u-palette-2-base u-btn-6">Голос 3</a>
-              </div>
-            </div>
-          </div>
-        </div>-->
       <div class="u-expanded-width u-form u-form-1">
         <form action="/wavfile" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom"
           name="form" style="padding: 10px;">
@@ -148,7 +128,7 @@
           <input type="hidden" value="" name="recaptchaResponse">
         </form>
       </div>
-      AUDIO: <audio src="{{ url_for("static", filename = "output.wav") }}" controls></audio>
+      AUDIO: <audio src="{{ url_for("static", filename = "sample.wav") }}" controls></audio>
       {% if path_to_file %}
         <audio src="{{ url_for("static", filename = "sample.wav") }}" controls></audio>
       {% endif %}
